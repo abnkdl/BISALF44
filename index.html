@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+/* ===== RESET ===== */
+* {
+  box-sizing: border-box;
+}
+
+/* ===== CONTAINER FLUTUANTE ===== */
+.dictionary-wrapper {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9999;
+  font-family: Arial, sans-serif;
+}
+
+/* ===== BOLINHA PULSANTE ===== */
+.pulse-button {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #ffffff;
+  cursor: pointer;
+  position: relative;
+  border: none;
+  box-shadow: 0 0 0 rgba(255,255,255,0.6);
+  animation: pulse 1.6s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255,255,255,0.6);
+  }
+  70% {
+    box-shadow: 0 0 0 18px rgba(255,255,255,0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255,255,255,0);
+  }
+}
+
+/* ===== PAINEL ===== */
+.dictionary-panel {
+  position: absolute;
+  bottom: 70px;
+  right: 0;
+  width: min(320px, 85vw);
+  max-height: 70vh;
+  background: rgba(20, 20, 20, 0.92);
+  color: #fff;
+  border-radius: 14px;
+  padding: 16px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+  overflow-y: auto;
+  opacity: 0;
+  transform: translateY(12px);
+  pointer-events: none;
+  transition: all 0.35s ease;
+}
+
+/* ===== PAINEL ATIVO ===== */
+.dictionary-panel.active {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* ===== TÍTULO ===== */
+.dictionary-panel h3 {
+  margin: 0 0 12px 0;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+/* ===== ENTRADAS ===== */
+.entry {
+  margin-bottom: 12px;
+}
+
+.entry strong {
+  display: block;
+  font-size: 0.95rem;
+}
+
+.entry span {
+  font-size: 0.85rem;
+  opacity: 0.85;
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 600px) {
+  .dictionary-wrapper {
+    bottom: 16px;
+    right: 16px;
+  }
+
+  .pulse-button {
+    width: 46px;
+    height: 46px;
+  }
+
+  .dictionary-panel {
+    width: 90vw;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="dictionary-wrapper">
+
+  <button class="pulse-button" id="togglePanel" aria-label="Abrir dicionário"></button>
+
+  <div class="dictionary-panel" id="dictionaryPanel">
+    <h3>Dicionário</h3>
+
+    <div class="entry">
+      <strong>Ecologia</strong>
+      <span>Estudo das relações entre os seres vivos e o ambiente.</span>
+    </div>
+
+    <div class="entry">
+      <strong>Fenologia</strong>
+      <span>Análise dos eventos cíclicos das plantas e animais.</span>
+    </div>
+
+    <div class="entry">
+      <strong>Resiliência</strong>
+      <span>Capacidade de um sistema se recuperar após distúrbios.</span>
+    </div>
+
+    <div class="entry">
+      <strong>Bisalf</strong>
+      <span>Espaço de reflexão, ciência e narrativa visual.</span>
+    </div>
+
+  </div>
+</div>
+
+<script>
+const toggleButton = document.getElementById('togglePanel');
+const panel = document.getElementById('dictionaryPanel');
+
+toggleButton.addEventListener('click', () => {
+  panel.classList.toggle('active');
+});
+</script>
+
+</body>
+</html>
