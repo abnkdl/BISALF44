@@ -14,79 +14,60 @@ html, body {
   font-family: Arial, sans-serif;
 }
 
-/* ===== CONTAINER FLUTUANTE ===== */
-.dictionary-widget {
+/* ===== BOTÃO FLUTUANTE ===== */
+.floating-button {
   position: absolute;
-  bottom: 20px;
-  right: 20px;
-  z-index: 9999;
-}
-
-/* ===== BOLINHA ===== */
-.bubble {
-  width: 18px;
-  height: 18px;
-  background: #00ffcc;
+  bottom: 24px;
+  right: 24px;
+  width: 16px;
+  height: 16px;
+  background: #00e6b8;
   border-radius: 50%;
   cursor: pointer;
-  animation: pulse 1.6s infinite;
+  z-index: 9999;
+  animation: pulse 1.8s infinite;
 }
 
+/* ===== ANIMAÇÃO ===== */
 @keyframes pulse {
-  0% { box-shadow: 0 0 0 0 rgba(0,255,204,0.7); }
-  70% { box-shadow: 0 0 0 12px rgba(0,255,204,0); }
-  100% { box-shadow: 0 0 0 0 rgba(0,255,204,0); }
+  0% {
+    box-shadow: 0 0 0 0 rgba(0,230,184,0.6);
+  }
+  70% {
+    box-shadow: 0 0 0 14px rgba(0,230,184,0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(0,230,184,0);
+  }
 }
 
-/* ===== PAINEL ===== */
-.panel {
+/* ===== TOOLTIP (OPCIONAL) ===== */
+.tooltip {
   position: absolute;
-  bottom: 30px;
+  bottom: 28px;
   right: 0;
-  width: 260px;
-  max-height: 300px;
-  background: rgba(20,20,20,0.95);
+  background: rgba(20,20,20,0.9);
   color: #fff;
-  border-radius: 12px;
-  padding: 14px;
-  box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+  padding: 6px 10px;
+  font-size: 0.75rem;
+  border-radius: 6px;
   opacity: 0;
   pointer-events: none;
-  transform: translateY(10px);
-  transition: 0.35s ease;
+  transform: translateY(6px);
+  transition: 0.3s ease;
+  white-space: nowrap;
 }
 
-/* ===== PAINEL ATIVO ===== */
-.panel.active {
+.floating-button:hover .tooltip {
   opacity: 1;
-  pointer-events: auto;
   transform: translateY(0);
-}
-
-/* ===== ITENS ===== */
-.entry {
-  margin-bottom: 10px;
-}
-
-.entry strong {
-  display: block;
-  font-size: 0.9rem;
-}
-
-.entry span {
-  font-size: 0.8rem;
-  color: #ccc;
 }
 
 /* ===== MOBILE ===== */
 @media (max-width: 768px) {
-  .dictionary-widget {
-    bottom: 15px;
-    right: 15px;
-  }
-
-  .panel {
-    width: 220px;
+  .floating-button {
+    bottom: 18px;
+    right: 18px;
   }
 }
 </style>
@@ -94,33 +75,16 @@ html, body {
 
 <body>
 
-<div class="dictionary-widget">
-  <div class="bubble" id="toggle"></div>
-
-  <div class="panel" id="panel">
-    <div class="entry">
-      <strong>Bioma</strong>
-      <span>Conjunto de ecossistemas com características semelhantes.</span>
-    </div>
-
-    <div class="entry">
-      <strong>Ecologia</strong>
-      <span>Estudo das relações entre organismos e o ambiente.</span>
-    </div>
-
-    <div class="entry">
-      <strong>Resiliência</strong>
-      <span>Capacidade de um sistema se recuperar após perturbações.</span>
-    </div>
-  </div>
+<div class="floating-button" id="actionButton">
+  <div class="tooltip">Abrir recurso</div>
 </div>
 
 <script>
-const toggle = document.getElementById('toggle');
-const panel = document.getElementById('panel');
+const button = document.getElementById('actionButton');
 
-toggle.addEventListener('click', () => {
-  panel.classList.toggle('active');
+/* ===== AÇÃO AO CLICAR ===== */
+button.addEventListener('click', () => {
+  alert('Aqui você pode abrir um painel, link ou ação personalizada.');
 });
 </script>
 
